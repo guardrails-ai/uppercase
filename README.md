@@ -1,4 +1,4 @@
-# Overview
+## Overview
 
 | Developed by | Guardrails AI |
 | --- | --- |
@@ -8,19 +8,19 @@
 | License | Apache 2 |
 | Input/Output | Output |
 
-# Description
+## Description
 
 This validator ensures that a generated output is in upper case.
 
-# Installation
+## Installation
 
 ```bash
-$ guardrails hub install hub://guardrails/upper-case
+$ guardrails hub install hub://guardrails/uppercase
 ```
 
-# Usage Examples
+## Usage Examples
 
-## Validating string output via Python
+### Validating string output via Python
 
 In this example, we’ll test that a generated sentence is lower case.
 
@@ -41,7 +41,7 @@ guard.parse("PIP INSTALL GUARDRAILS-AI")  # Validator passes
 guard.parse("pip install guardrails-ai")  # Validator fails
 ```
 
-## Validating JSON output via Python
+### Validating JSON output via Python
 
 In this example, we verify that a user’s email is specified in lower case.
 
@@ -55,8 +55,8 @@ val = UpperCase(on_fail="fix")
 
 # Create Pydantic BaseModel
 class UserInfo(BaseModel):
-		user_name: str
-		email: str = Field(validators=[val])
+    user_name: str
+    email: str = Field(validators=[val])
 
 # Create a Guard to check for valid Pydantic output
 guard = Guard.from_pydantic(output_class=UserInfo)
@@ -64,21 +64,13 @@ guard = Guard.from_pydantic(output_class=UserInfo)
 # Run LLM output generating JSON through guard
 guard.parse("""
 {
-		"user_name": "User Name",
-		"user_name": "USER@GUARDRAILSAI.COM"
+    "user_name": "User Name",
+    "user_name": "USER@GUARDRAILSAI.COM"
 }
 """)
 ```
 
-## Validating string output via RAIL
-
-tbd
-
-## Validating JSON output via RAIL
-
-tbd
-
-# API Reference
+## API Reference
 
 `__init__`
 

@@ -10,25 +10,26 @@ from guardrails.validator_base import (
 )
 
 
-@register_validator(name="guardrails/upper_case", data_type="string")
+@register_validator(name="guardrails/uppercase", data_type="string")
 class UpperCase(Validator):
-    """Validates that a value is upper case.
+    """Validates that a value is uppercase.
 
     **Key Properties**
 
     | Property                      | Description                       |
     | ----------------------------- | --------------------------------- |
-    | Name for `format` attribute   | `upper-case`                      |
+    | Name for `format` attribute   | `guardrails/uppercase`           |
     | Supported data types          | `string`                          |
     | Programmatic fix              | Convert to upper case.            |
     """
 
     def validate(self, value: Any, metadata: Dict) -> ValidationResult:
-        logger.debug(f"Validating {value} is upper case...")
+        """Validation method of the validator."""
+        logger.debug(f"Validating {value} is uppercase...")
 
         if value.upper() != value:
             return FailResult(
-                error_message=f"Value {value} is not upper case.",
+                error_message=f"Value {value} is not uppercase.",
                 fix_value=value.upper(),
             )
 

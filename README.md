@@ -22,7 +22,7 @@ guardrails hub install hub://guardrails/uppercase
 
 ### Validating string output via Python
 
-In this example, we’ll test that a generated sentence is lower case.
+In this example, we’ll test that a generated sentence is uppercase.
 
 ```python
 # Import Guard and Validator

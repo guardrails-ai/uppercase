@@ -4,18 +4,18 @@
 | --- | --- |
 | Date of development | Feb 15, 2024 |
 | Validator type | Format |
-| Blog |  |
+| Blog | - |
 | License | Apache 2 |
 | Input/Output | Output |
 
 ## Description
 
-This validator ensures that a generated output is in upper case.
+This validator ensures that a generated output is in uppercase.
 
 ## Installation
 
 ```bash
-$ guardrails hub install hub://guardrails/uppercase
+guardrails hub install hub://guardrails/uppercase
 ```
 
 ## Usage Examples
@@ -26,48 +26,22 @@ In this example, we’ll test that a generated sentence is lower case.
 
 ```python
 # Import Guard and Validator
-from guardrails.hub import UpperCase
 from guardrails import Guard
-
-# Initialize Validator
-val = UpperCase(on_fail="fix")
+from guardrails.hub import UpperCase
 
 # Setup Guard
-guard = Guard.from_string(
-    validators=[val, ...],
-)
+guard = Guard().use(UpperCase, on_fail="exception")
 
-guard.parse("PIP INSTALL GUARDRAILS-AI")  # Validator passes
-guard.parse("pip install guardrails-ai")  # Validator fails
+response = guard.validate("MAY DECEMBER")  # Validator passes
+
+try:
+    response = guard.validate("past lives")  # Validator fails
+except Exception as e:
+    print(e)
 ```
-
-### Validating JSON output via Python
-
-In this example, we verify that a user’s email is specified in lower case.
-
-```python
-# Import Guard and Validator
-from pydantic import BaseModel
-from guardrails.hub import UpperCase
-from guardrails import Guard
-
-val = UpperCase(on_fail="fix")
-
-# Create Pydantic BaseModel
-class UserInfo(BaseModel):
-    user_name: str
-    email: str = Field(validators=[val])
-
-# Create a Guard to check for valid Pydantic output
-guard = Guard.from_pydantic(output_class=UserInfo)
-
-# Run LLM output generating JSON through guard
-guard.parse("""
-{
-    "user_name": "User Name",
-    "user_name": "USER@GUARDRAILSAI.COM"
-}
-""")
+Output:
+```console
+Validation failed for field with errors: Value past lives is not uppercase.
 ```
 
 ## API Reference
@@ -85,7 +59,7 @@ Initializes a new instance of the Validator class.
 
 <br>
 
-**`__call__(self, value, metadata={}) → ValidationOutcome`**
+**`__call__(self, value, metadata={}) → ValidationResult`**
 
 <ul>
 

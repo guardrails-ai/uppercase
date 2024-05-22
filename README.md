@@ -20,7 +20,7 @@ This validator ensures that a generated output is in uppercase.
 ## Installation
 
 ```bash
-guardrails hub install hub://guardrails/uppercase
+$ guardrails hub install hub://guardrails/uppercase
 ```
 
 ## Usage Examples
@@ -64,7 +64,7 @@ Initializes a new instance of the Validator class.
 
 <br>
 
-**`__call__(self, value, metadata={}) → ValidationResult`**
+**`__call__(self, value, metadata={}) -> ValidationResult`**
 
 <ul>
 

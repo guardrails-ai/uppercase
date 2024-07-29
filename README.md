@@ -1,21 +1,26 @@
 ## Overview
 
 | Developed by | Guardrails AI |
-| --- | --- |
 | Date of development | Feb 15, 2024 |
 | Validator type | Format |
-| Blog | - |
+| Blog |  |
 | License | Apache 2 |
 | Input/Output | Output |
 
 ## Description
 
+### Intended Use
 This validator ensures that a generated output is in uppercase.
+
+### Requirements
+
+* Dependencies:
+    - guardrails-ai>=0.4.0
 
 ## Installation
 
 ```bash
-guardrails hub install hub://guardrails/uppercase
+$ guardrails hub install hub://guardrails/uppercase
 ```
 
 ## Usage Examples
@@ -44,7 +49,7 @@ Output:
 Validation failed for field with errors: Value past lives is not uppercase.
 ```
 
-## API Reference
+# API Reference
 
 **`__init__(self, on_fail="noop")`**
 <ul>
@@ -59,7 +64,7 @@ Initializes a new instance of the Validator class.
 
 <br>
 
-**`__call__(self, value, metadata={}) → ValidationResult`**
+**`__call__(self, value, metadata={}) -> ValidationResult`**
 
 <ul>
 
